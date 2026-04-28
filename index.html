@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English OS · IELTS Upgrade Dashboard</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: rgba(255, 255, 255, 0.86);
+      --text: #182033;
+      --muted: #6b7280;
+      --line: rgba(24, 32, 51, 0.09);
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --success: #16a34a;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --radius: 24px;
+    }* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.12), transparent 32%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+.page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 44px 0 64px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 650;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.subtitle {
+  margin: 18px 0 0;
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.today {
+  min-width: 180px;
+  text-align: right;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.today strong {
+  display: block;
+  color: var(--text);
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 18px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  padding: 22px;
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+}
+
+.mission-list {
+  display: grid;
+  gap: 10px;
+}
+
+.mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.mission label {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 650;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.progress-wrap {
+  margin-top: 16px;
+}
+
+.progress-head {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.bar {
+  height: 12px;
+  background: rgba(148, 163, 184, 0.22);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.score {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.score .name {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.score .value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.score .target {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.quote {
+  font-size: 24px;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
+}
+
+.note {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.68);
+  border-radius: 18px;
+  padding: 14px 15px;
+  font: inherit;
+  color: var(--text);
+  outline: none;
+}
+
+textarea:focus, input[type="text"]:focus {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+textarea {
+  min-height: 132px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.stack {
+  display: grid;
+  gap: 18px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+button {
+  border: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: 11px 14px;
+  border-radius: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+button.secondary {
+  background: rgba(24, 32, 51, 0.08);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.footer {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+@media (max-width: 820px) {
+  header {
+    flex-direction: column;
+  }
+
+  .today {
+    text-align: left;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <section>
+        <div class="eyebrow">IELTS · Trade English · Self Upgrade</div>
+        <h1>English OS</h1>
+        <p class="subtitle">不是“学英语”，而是把英语变成武器。记录雅思备考、外贸表达、口语素材和每天的升级痕迹。</p>
+      </section>
+      <aside class="today">
+        <strong id="todayText">Today</strong>
+        <span id="dateText"></span>
+      </aside>
+    </header><section class="grid">
+  <div class="stack">
+    <article class="card">
+      <h2>Today Mission</h2>
+      <div class="mission-list" id="missionList">
+        <div class="mission"><label><input type="checkbox" data-task="listening" /> Listening 30 min</label><span class="tag">input</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="speaking" /> Speaking 20 min</label><span class="tag">output</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="reading" /> Reading 1 passage</label><span class="tag">focus</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="writing" /> Writing 1 paragraph</label><span class="tag">logic</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="trade" /> Trade English 1 expression</label><span class="tag">work</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-head"><span>Daily progress</span><strong id="progressText">0/5</strong></div>
+        <div class="bar"><span id="progressBar"></span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Daily Reflection</h2>
+      <textarea id="reflection" placeholder="Today I learned...\nToday I struggled with...\nTomorrow I will..."></textarea>
+      <div class="button-row">
+        <button id="saveBtn">保存今天记录</button>
+        <button class="secondary" id="clearBtn">清空今天</button>
+      </div>
+    </article>
+  </div>
+
+  <div class="stack">
+    <article class="card">
+      <h2>IELTS Bosses</h2>
+      <div class="score-grid">
+        <div class="score"><div class="name">Listening</div><div class="value">7.0</div><div class="target">target</div></div>
+        <div class="score"><div class="name">Reading</div><div class="value">7.0</div><div class="target">target</div></div>
+        <div class="score"><div class="name">Writing</div><div class="value">6.5</div><div class="target">target</div></div>
+        <div class="score"><div class="name">Speaking</div><div class="value">6.5</div><div class="target">target</div></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <p class="quote">I am not thin anymore. I build proof, day by day.</p>
+      <p class="note">Memotune 是作品，IELTS 是战绩，外贸英语是现实战场。每天推进一点，底气就厚一点。</p>
+    </article>
+
+    <article class="card">
+      <h2>One Sentence Output</h2>
+      <input id="sentence" type="text" placeholder="例：I developed an Android music player using Kotlin and Jetpack Compose." />
+    </article>
+  </div>
+</section>
+
+<p class="footer">Data is saved locally in this browser via localStorage. First version for personal motivation.</p>
+
+  </main>  <script>
+    const dateKey = new Date().toISOString().slice(0, 10);
+    const storeKey = `english-os-${dateKey}`;
+    const date = new Date();
+
+    document.getElementById("todayText").textContent = date.toLocaleDateString("en-US", { weekday: "long" });
+    document.getElementById("dateText").textContent = date.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" });
+
+    const checkboxes = [...document.querySelectorAll("input[type='checkbox'][data-task]")];
+    const reflection = document.getElementById("reflection");
+    const sentence = document.getElementById("sentence");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+
+    function getData() {
+      try {
+        return JSON.parse(localStorage.getItem(storeKey)) || { tasks: {}, reflection: "", sentence: "" };
+      } catch {
+        return { tasks: {}, reflection: "", sentence: "" };
+      }
+    }
+
+    function setData(data) {
+      localStorage.setItem(storeKey, JSON.stringify(data));
+    }
+
+    function updateProgress() {
+      const done = checkboxes.filter(cb => cb.checked).length;
+      progressText.textContent = `${done}/${checkboxes.length}`;
+      progressBar.style.width = `${(done / checkboxes.length) * 100}%`;
+    }
+
+    function load() {
+      const data = getData();
+      checkboxes.forEach(cb => cb.checked = Boolean(data.tasks[cb.dataset.task]));
+      reflection.value = data.reflection || "";
+      sentence.value = data.sentence || "";
+      updateProgress();
+    }
+
+    function save() {
+      const tasks = {};
+      checkboxes.forEach(cb => tasks[cb.dataset.task] = cb.checked);
+      setData({ tasks, reflection: reflection.value, sentence: sentence.value });
+      updateProgress();
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener("change", save));
+    reflection.addEventListener("input", save);
+    sentence.addEventListener("input", save);
+
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      save();
+      alert("Saved. 今天也算推进了一点。");
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      if (!confirm("清空今天的记录？")) return;
+      localStorage.removeItem(storeKey);
+      load();
+    });
+
+    load();
+  </script></body>
+</html>
