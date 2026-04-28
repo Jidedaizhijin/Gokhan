@@ -300,9 +300,9 @@ button.secondary {
   <main class="page">
     <header>
       <section>
-        <div class="eyebrow">IELTS · Trade English · Self Upgrade</div>
+        <div class="eyebrow">IELTS · Trade English · Daily Output</div>
         <h1>English OS</h1>
-        <p class="subtitle">不是“学英语”，而是把英语变成武器。记录雅思备考、外贸表达、口语素材和每天的升级痕迹。</p>
+        <p class="subtitle">A personal dashboard for IELTS preparation, trade English practice, and daily English output.</p>
       </section>
       <aside class="today">
         <strong id="todayText">Today</strong>
@@ -311,54 +311,50 @@ button.secondary {
     </header><section class="grid">
   <div class="stack">
     <article class="card">
-      <h2>Today Mission</h2>
+      <h2>Today's Plan</h2>
       <div class="mission-list" id="missionList">
-        <div class="mission"><label><input type="checkbox" data-task="listening" /> Listening 30 min</label><span class="tag">input</span></div>
-        <div class="mission"><label><input type="checkbox" data-task="speaking" /> Speaking 20 min</label><span class="tag">output</span></div>
-        <div class="mission"><label><input type="checkbox" data-task="reading" /> Reading 1 passage</label><span class="tag">focus</span></div>
-        <div class="mission"><label><input type="checkbox" data-task="writing" /> Writing 1 paragraph</label><span class="tag">logic</span></div>
-        <div class="mission"><label><input type="checkbox" data-task="trade" /> Trade English 1 expression</label><span class="tag">work</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="listening" /> Listening · 30 min</label><span class="tag">input</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="speaking" /> Speaking · 20 min</label><span class="tag">output</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="reading" /> Reading · 1 passage</label><span class="tag">focus</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="writing" /> Writing · 1 paragraph</label><span class="tag">logic</span></div>
+        <div class="mission"><label><input type="checkbox" data-task="trade" /> Trade English · 1 expression</label><span class="tag">work</span></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-head"><span>Daily progress</span><strong id="progressText">0/5</strong></div>
+        <div class="progress-head"><span>Progress</span><strong id="progressText">0/5</strong></div>
         <div class="bar"><span id="progressBar"></span></div>
       </div>
     </article>
 
     <article class="card">
-      <h2>Daily Reflection</h2>
-      <textarea id="reflection" placeholder="Today I learned...\nToday I struggled with...\nTomorrow I will..."></textarea>
-      <div class="button-row">
-        <button id="saveBtn">保存今天记录</button>
-        <button class="secondary" id="clearBtn">清空今天</button>
-      </div>
-    </article>
-  </div>
+      <h2>Daily Log</h2>
+      <textarea id="reflection" placeholder="What did I practice today?
 
-  <div class="stack">
+What was difficult? What should I do tomorrow?"></textarea> <div class="button-row"> <button id="saveBtn">Save log</button> <button class="secondary" id="clearBtn">Clear today</button> </div> </article> </div>
+
+<div class="stack">
     <article class="card">
-      <h2>IELTS Bosses</h2>
+      <h2>IELTS Targets</h2>
       <div class="score-grid">
-        <div class="score"><div class="name">Listening</div><div class="value">7.0</div><div class="target">target</div></div>
-        <div class="score"><div class="name">Reading</div><div class="value">7.0</div><div class="target">target</div></div>
-        <div class="score"><div class="name">Writing</div><div class="value">6.5</div><div class="target">target</div></div>
-        <div class="score"><div class="name">Speaking</div><div class="value">6.5</div><div class="target">target</div></div>
+        <div class="score"><div class="name">Listening</div><div class="value">7.0</div><div class="target">target band</div></div>
+        <div class="score"><div class="name">Reading</div><div class="value">7.0</div><div class="target">target band</div></div>
+        <div class="score"><div class="name">Writing</div><div class="value">6.5</div><div class="target">target band</div></div>
+        <div class="score"><div class="name">Speaking</div><div class="value">6.5</div><div class="target">target band</div></div>
       </div>
     </article>
 
     <article class="card">
-      <p class="quote">I am not thin anymore. I build proof, day by day.</p>
-      <p class="note">Memotune 是作品，IELTS 是战绩，外贸英语是现实战场。每天推进一点，底气就厚一点。</p>
+      <p class="quote">Build proof, one day at a time.</p>
+      <p class="note">Small records, real progress. This page is for keeping English practice visible and consistent.</p>
     </article>
 
     <article class="card">
       <h2>One Sentence Output</h2>
-      <input id="sentence" type="text" placeholder="例：I developed an Android music player using Kotlin and Jetpack Compose." />
+      <input id="sentence" type="text" placeholder="Example: I developed an Android music player using Kotlin and Jetpack Compose." />
     </article>
   </div>
 </section>
 
-<p class="footer">Data is saved locally in this browser via localStorage. First version for personal motivation.</p>
+<p class="footer">Saved locally in this browser. English OS v0.1</p>
 
   </main>  <script>
     const dateKey = new Date().toISOString().slice(0, 10);
@@ -413,11 +409,11 @@ button.secondary {
 
     document.getElementById("saveBtn").addEventListener("click", () => {
       save();
-      alert("Saved. 今天也算推进了一点。");
+      alert("Saved.");
     });
 
     document.getElementById("clearBtn").addEventListener("click", () => {
-      if (!confirm("清空今天的记录？")) return;
+      if (!confirm("Clear today's log?")) return;
       localStorage.removeItem(storeKey);
       load();
     });
